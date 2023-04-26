@@ -1,1 +1,4 @@
-import "./app.js"
+import "./js/reader"
+import "./js/parser"
+import "./js/app"
+
