@@ -1,8 +1,6 @@
 import { default as read } from "./reader";
 import { default as json } from "./parser";
 
-// import { read } from "./reader"
-// import json from "./parser"
 
 export default class GameSavingLoader {
 	load() {
