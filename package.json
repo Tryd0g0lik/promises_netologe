@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "jest",
+		"lint": "eslint .",
 		"build": "webpack --mode=production --config ./webpack.config.js",
 		"build:dev": "webpack --mode=development --config ./webpack.config.js",
 		"watch": "webpack --watch",

@@ -1,13 +1,9 @@
 module.exports = {
 	env: {
 		browser: true,
-		2018: true,
+		es6: true,
 	},
-	extends: [
-		'airbnb-base',
-		"eslint:recommended",
-		{ "plugin": "import/recommended" }
-	],
+	extends: 'airbnb-base',
 	overrides: [
 	],
 	parserOptions: {
@@ -19,9 +15,12 @@ module.exports = {
 		"no-undef": 0,
 		"no-tabs": 0,
 		"indent": 0,
+		"no-sequences": 0,
+		"lines-between-class-members": ["error", "always"],
 		"operator-linebreak": 0,
 		"import/newline-after-import": ["error", { "count": 2 }],
-		"no-unused-expressions": ["warn", { "allowShortCircuit": true }],
+		"import/no-named-default": 0,
+		"no-unused-expressions": ["warn", { "allowShortCircuit": true, "allowTernary": true }],
 		"quotes": ["error", "double", { "allowTemplateLiterals": true }],
 		"quote-props": ["error", "always"],
 		"spaced-comment": ["error", "always"],
@@ -37,5 +36,4 @@ module.exports = {
 		"linebreak-style": 0,
 		"no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1, "maxBOF": 0 }]
 	},
-
 };

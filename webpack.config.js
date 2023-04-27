@@ -24,7 +24,8 @@ module.exports = {
 	},
 	plugins: [
 		new ESLintWebpackPlugin({
-			files: path.resolve(__dirname, "./eslintrc.js"),
+			overrideConfigFile: path.resolve(__dirname, ".eslintrc.js"),
+			files: path.resolve(__dirname, "./src/js/")
 		}),
 		new webpack.LoaderOptionsPlugin({
 			options: {
@@ -59,7 +60,6 @@ module.exports = {
 			'bower_components',
 		],
 	},
-
 };
 
 // module.exports = () => {
