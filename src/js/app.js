@@ -1,5 +1,5 @@
-import { default as read } from "./reader.js";
-import { default as json } from "./parser.js";
+import { default as read } from "./reader";
+import { default as json } from "./parser";
 
 
 export default class GameSavingLoader {
