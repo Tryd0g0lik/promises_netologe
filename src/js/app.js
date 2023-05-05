@@ -6,10 +6,27 @@ export default class GameSavingLoader {
 	load() {
 		return new Promise((resolve, reject) => {
 			const resp = read()
+				.then(item => json(item))
 				.then(item => {
-					const respone = json(item);
-					return respone;
-				});
+					console.log(item)
+
+					const answer = JSON.parse(item);
+
+					class GameSaving {
+						constructor() {
+							this.ind = answer.id;
+							this.createds = answer.created;
+							this.userInfos = {
+								"id": answer.userInfo.id,
+								"name": answer.userInfo.name,
+								"level": answer.userInfo.level,
+								"points": answer.userInfo.points,
+							};
+						}
+					};
+					const resp = new GameSaving();
+					return resp;
+				})
 			resolve(resp), reject(
 				new Error(err.message),
 			);
@@ -20,29 +37,8 @@ export default class GameSavingLoader {
 const response = new GameSavingLoader();
 response.load()
 	.then(
-		sav => {
-			const answer = JSON.parse(sav);
-			class GameSaving {
-				constructor() {
-					this.ind = answer.id;
-					this.createds = answer.created;
-					this.userInfos = {
-						"id": answer.userInfo.id,
-						"name": answer.userInfo.name,
-						"level": answer.userInfo.level,
-						"points": answer.userInfo.points,
-					};
-				}
-			};
-			const resp = new GameSaving();
-
-			return resp
-		},
+		item => console.log("========>>: ", item.ind),
 		err => {
 			console.log(`ERROR: ${err}`);
 		},
-	)
-	.then(item => {
-		// const objClassGameSaving = new item();
-		console.log("========>>: ", item.ind);
-	});
+);
