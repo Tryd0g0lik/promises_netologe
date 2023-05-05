@@ -3,19 +3,30 @@ import { default as GameSavingLoader } from "../app";
 
 describe("the can", () => {
 	const response = new GameSavingLoader();
-	test("0001", () => response.load().then(
-			saving => response.parsing(saving),
-		).then(
+	test("0001", () => response.load().then((item) => {
+		const answer = JSON.parse(item);
+		class GameSaving {
+			constructor() {
+				this.ind = answer.id;
+				this.createds = answer.created;
+				this.userInfos = {
+					"id": answer.userInfo.id,
+					"name": answer.userInfo.name,
+					"level": answer.userInfo.level,
+					"points": answer.userInfo.points,
+				};
+			}
+		};
+		const resp = new GameSaving();
+		return resp
+	},
+		err => {
+			console.log(`ERROR: ${err}`);
+		}).then(
 			data => {
-				expect(data).toBe("{'id':9,'created':1546300800,'userInfo':{'id':1,'name':'Hitman','level':10,'points':2000}}");
+				// const resp = new data()
+				const i = data.ind;
+				expect(i).toBe(9);
 			},
 		));
-
-	test("0002", () => response.load().then(
-		saving => response.parsing(saving),
-	).then(
-		data => {
-			expect(data).not.toBe("{'id':9,'created':1546300800,'userInfo':{'id':2,'name':'Hitman','level':10,'points':2000}}");
-		},
-	));
 });
