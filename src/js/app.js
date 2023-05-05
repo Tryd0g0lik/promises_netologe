@@ -1,5 +1,5 @@
-import { default as read } from "./reader.js";
-import { default as json } from "./parser.js";
+import { default as read } from './reader';
+import { default as json } from './parser';
 
 
 export default class GameSavingLoader {
@@ -8,8 +8,6 @@ export default class GameSavingLoader {
 			const resp = read()
 				.then(item => json(item))
 				.then(item => {
-					console.log(item)
-
 					const answer = JSON.parse(item);
 
 					class GameSaving {
@@ -17,28 +15,18 @@ export default class GameSavingLoader {
 							this.ind = answer.id;
 							this.createds = answer.created;
 							this.userInfos = {
-								"id": answer.userInfo.id,
-								"name": answer.userInfo.name,
-								"level": answer.userInfo.level,
-								"points": answer.userInfo.points,
+								'id': answer.userInfo.id,
+								'name': answer.userInfo.name,
+								'level': answer.userInfo.level,
+								'points': answer.userInfo.points,
 							};
 						}
-					};
-					const resp = new GameSaving();
-					return resp;
-				})
-			resolve(resp), reject(
-				new Error(err.message),
-			);
+					}
+					const respone = new GameSaving();
+					return respone;
+				});
+			resolve(resp),
+				reject(() => new Error(err.message));
 		});
 	}
 }
-
-const response = new GameSavingLoader();
-response.load()
-	.then(
-		item => console.log("========>>: ", item.ind),
-		err => {
-			console.log(`ERROR: ${err}`);
-		},
-);
